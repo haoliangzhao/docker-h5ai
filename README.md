@@ -173,6 +173,35 @@ http://localhost/
 ![Sample files from https://www.sample-videos.com/](docs/docker-h5ai-demo.png)
 After all, you can see the directories you shared.
 
+### Local development with live source files
+
+For local development, use the development Compose configuration:
+
+```bash
+docker compose -f compose.dev.yml up --build -d
+```
+
+Then open <http://127.0.0.1:8080/>.
+
+The development container bind-mounts `config/_h5ai`, so changes to PHP,
+JavaScript, and CSS files are available without rebuilding the image or
+recreating the container. Refresh the browser to load the updated files.
+
+The sample files shown in the index come from `docs`. Generated h5ai cache
+files are stored in temporary in-memory mounts, so the container does not
+change permissions in the working tree.
+
+Useful commands:
+
+```bash
+docker compose -f compose.dev.yml logs -f
+docker compose -f compose.dev.yml restart
+docker compose -f compose.dev.yml down
+```
+
+Changes to the `Dockerfile` or installed Alpine packages still require an image
+rebuild. Nginx or PHP configuration changes require a container restart.
+
 ## Caution when update
 
 **If the new h5ai version releases**, I overwrite all the updated files to the corresponded directories on the project folder. In this sequence, some customized files by you will be replaced into the new one.

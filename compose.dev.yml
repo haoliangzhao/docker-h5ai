@@ -1,0 +1,25 @@
+services:
+  h5ai:
+    build:
+      context: .
+    image: docker-h5ai:dev
+    container_name: docker-h5ai-dev
+    ports:
+      - "127.0.0.1:8080:80"
+    environment:
+      TZ: Asia/Shanghai
+    entrypoint:
+      - /bin/bash
+      - /init.dev.sh
+    volumes:
+      # Preview the repository's sample files.
+      - ./docs:/h5ai:ro
+      # Serve PHP, JavaScript, and CSS directly from the working tree.
+      - ./config/_h5ai:/usr/share/h5ai/_h5ai:ro
+      - ./config/h5ai.conf:/etc/nginx/conf.d/h5ai.conf:ro
+      - ./config/init.dev.sh:/init.dev.sh:ro
+      - ./config/php_dev.ini:/etc/php82/conf.d/99_dev.ini:ro
+    tmpfs:
+      # Keep generated caches writable without changing host file permissions.
+      - /usr/share/h5ai/_h5ai/public/cache:mode=1777
+      - /usr/share/h5ai/_h5ai/private/cache:mode=1777
