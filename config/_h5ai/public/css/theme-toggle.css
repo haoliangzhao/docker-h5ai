@@ -1,0 +1,241 @@
+:root {
+    color-scheme: light;
+}
+
+html[data-theme="dark"] {
+    color-scheme: dark;
+}
+
+#theme-toggle {
+    position: relative;
+    display: block;
+    flex: 0 0 48px;
+    order: 98;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    outline: 0;
+    color: rgba(0, 0, 0, 0.54);
+    background: transparent;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#theme-toggle:hover {
+    color: #42a5f5;
+    background: rgba(0, 0, 0, 0.03);
+}
+
+#theme-toggle:focus-visible {
+    box-shadow: inset 0 0 0 2px #42a5f5;
+}
+
+#theme-toggle .theme-icon {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+    transition: opacity 240ms ease, transform 360ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#theme-toggle .theme-icon-sun {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+#theme-toggle .theme-icon-moon {
+    opacity: 0;
+    transform: rotate(-80deg) scale(0.55);
+}
+
+html[data-theme="dark"] #theme-toggle {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+html[data-theme="dark"] #theme-toggle:hover {
+    color: #64b5f6;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme="dark"] #theme-toggle .theme-icon-sun {
+    opacity: 0;
+    transform: rotate(80deg) scale(0.55);
+}
+
+html[data-theme="dark"] #theme-toggle .theme-icon-moon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+html.theme-transitions #root,
+html.theme-transitions #topbar,
+html.theme-transitions #sidebar,
+html.theme-transitions #view .item,
+html.theme-transitions #view.view-icons .landscape,
+html.theme-transitions #fallback table,
+html.theme-transitions #fallback-hints,
+html.theme-transitions input,
+html.theme-transitions select {
+    transition: color 240ms ease, background-color 240ms ease, border-color 240ms ease;
+}
+
+html[data-theme="dark"] #root {
+    color: #e8e8e8;
+    background: #181818;
+}
+
+html[data-theme="dark"] #root,
+html[data-theme="dark"] #root input,
+html[data-theme="dark"] #root select {
+    color: #e8e8e8;
+}
+
+html[data-theme="dark"] #topbar,
+html[data-theme="dark"] #fallback-hints {
+    background: #202020;
+    border-color: rgba(255, 255, 255, 0.09);
+}
+
+html[data-theme="dark"] #toolbar .tool:hover,
+html[data-theme="dark"] #backlink:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme="dark"] #backlink,
+html[data-theme="dark"] #backlink:active,
+html[data-theme="dark"] #backlink:visited,
+html[data-theme="dark"] #fallback-hints a,
+html[data-theme="dark"] #fallback-hints a:active,
+html[data-theme="dark"] #fallback-hints a:visited {
+    color: rgba(255, 255, 255, 0.48);
+}
+
+html[data-theme="dark"] #backlink:hover,
+html[data-theme="dark"] #fallback-hints a:hover {
+    color: #64b5f6;
+}
+
+html[data-theme="dark"] #crumbbar a,
+html[data-theme="dark"] #crumbbar a:active,
+html[data-theme="dark"] #crumbbar a:visited,
+html[data-theme="dark"] #tree a,
+html[data-theme="dark"] #tree a:active,
+html[data-theme="dark"] #tree a.visited {
+    color: #e8e8e8;
+}
+
+html[data-theme="dark"] #crumbbar a:hover,
+html[data-theme="dark"] #tree a:hover {
+    color: #64b5f6;
+}
+
+html[data-theme="dark"] #filter input,
+html[data-theme="dark"] #search input {
+    color: #e8e8e8;
+}
+
+html[data-theme="dark"] #filter.pending input,
+html[data-theme="dark"] #search.pending input,
+html[data-theme="dark"] #tree .summary {
+    color: rgba(255, 255, 255, 0.38);
+}
+
+html[data-theme="dark"] #sidebar {
+    background: #202020;
+    border-color: rgba(255, 255, 255, 0.09);
+}
+
+html[data-theme="dark"] #sidebar .button {
+    color: #e8e8e8;
+}
+
+html[data-theme="dark"] #sidebar .button:hover,
+html[data-theme="dark"] #sidebar input:hover,
+html[data-theme="dark"] #sidebar select:hover {
+    background: rgba(255, 255, 255, 0.07);
+}
+
+html[data-theme="dark"] #sidebar .button.active {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.75);
+}
+
+html[data-theme="dark"] #sidebar .range-track,
+html[data-theme="dark"] #sidebar input[type="range"]::-webkit-slider-runnable-track,
+html[data-theme="dark"] #sidebar input[type="range"]::-moz-range-track {
+    background: #444;
+}
+
+html[data-theme="dark"] #sidebar .range-thumb,
+html[data-theme="dark"] #sidebar input[type="range"]::-webkit-slider-thumb,
+html[data-theme="dark"] #sidebar input[type="range"]::-moz-range-thumb {
+    background: #d0d0d0;
+}
+
+html[data-theme="dark"] #info .block,
+html[data-theme="dark"] #view.view-details .header,
+html[data-theme="dark"] #view.view-details .item {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+html[data-theme="dark"] #view .item {
+    background: #181818;
+}
+
+html[data-theme="dark"] #view .item:hover {
+    color: #64b5f6;
+    background: #2a2a2a;
+}
+
+html[data-theme="dark"] #view.view-icons .landscape {
+    background: #202020;
+}
+
+html[data-theme="dark"] #view .no-match,
+html[data-theme="dark"] #view #view-hint {
+    color: rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme="dark"] #fallback table {
+    background: #181818;
+}
+
+html[data-theme="dark"] #fallback th,
+html[data-theme="dark"] #fallback td {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+html[data-theme="dark"] #fallback th {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+html[data-theme="dark"] #toolbar .tool img,
+html[data-theme="dark"] #crumbbar .sep,
+html[data-theme="dark"] #tree .indicator img,
+html[data-theme="dark"] #view.view-details .header .sort {
+    filter: brightness(0) invert(1);
+    opacity: 0.72;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #theme-toggle .theme-icon,
+    html.theme-transitions #root,
+    html.theme-transitions #topbar,
+    html.theme-transitions #sidebar,
+    html.theme-transitions #view .item,
+    html.theme-transitions #view.view-icons .landscape,
+    html.theme-transitions #fallback table,
+    html.theme-transitions #fallback-hints,
+    html.theme-transitions input,
+    html.theme-transitions select {
+        transition: none;
+    }
+}

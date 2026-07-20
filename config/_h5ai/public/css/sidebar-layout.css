@@ -1,0 +1,49 @@
+@media screen {
+    #sidebar {
+        position: relative;
+        top: auto;
+        display: block !important;
+        box-sizing: border-box;
+        flex: 0 0 201px;
+        width: 201px;
+        max-width: 201px;
+        min-height: 0;
+        opacity: 1;
+        transition:
+            flex-basis 240ms ease,
+            width 240ms ease,
+            max-width 240ms ease,
+            padding-left 240ms ease,
+            padding-right 240ms ease,
+            border-color 240ms ease,
+            opacity 180ms ease;
+    }
+
+    #sidebar.hidden {
+        flex-basis: 0;
+        width: 0;
+        max-width: 0;
+        padding-left: 0;
+        padding-right: 0;
+        border-right-color: transparent;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    #content {
+        min-width: 0;
+    }
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+    #sidebar {
+        transition: none;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    #sidebar .block:has(#view-tree),
+    #sidebar .block:has(#view-info) {
+        display: none !important;
+    }
+}

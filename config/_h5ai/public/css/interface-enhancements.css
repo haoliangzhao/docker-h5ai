@@ -1,0 +1,54 @@
+#view .selector {
+    width: 16px;
+    height: 16px;
+    border-radius: 0 0 3px 0;
+}
+
+#view .selector img {
+    display: block;
+    width: 14px;
+    height: 14px;
+    margin: 1px;
+}
+
+#info .info-link {
+    margin-top: 12px;
+}
+
+#info .info-link-copy {
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 0;
+    padding: 0 12px;
+    border: 0;
+    border-radius: 3px;
+    color: #fff;
+    background: #42a5f5;
+    font: inherit;
+    line-height: 34px;
+    cursor: pointer;
+    transition: background-color 180ms ease, transform 120ms ease;
+}
+
+#info .info-link-copy:hover {
+    background: #1e88e5;
+}
+
+#info .info-link-copy:active {
+    transform: scale(0.98);
+}
+
+#info .info-link-copy:focus-visible {
+    outline: 2px solid #42a5f5;
+    outline-offset: 2px;
+}
+
+#info .info-link-copy.copied {
+    background: #43a047;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #info .info-link-copy {
+        transition: none;
+    }
+}
