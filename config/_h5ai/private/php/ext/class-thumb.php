@@ -29,6 +29,8 @@ class Thumb {
             return null;
         }
 
+        $extension = strtolower(pathinfo($source_path, PATHINFO_EXTENSION));
+        $contain = $type === 'img' || in_array($extension, ['heic', 'heif'], true);
         $capture_path = $source_path;
         if ($type === 'img') {
             $capture_path = $source_path;
@@ -46,15 +48,17 @@ class Thumb {
             }
         }
 
-        return $this->thumb_href($capture_path, $width, $height);
+        return $this->thumb_href($capture_path, $width, $height, $contain);
     }
 
-    private function thumb_href($source_path, $width, $height) {
-        if (!file_exists($source_path)) {
+    private function thumb_href($source_path, $width, $height, $contain = false) {
+        if ($source_path === null || !file_exists($source_path)) {
             return null;
         }
 
-        $name = 'thumb-' . sha1($source_path) . '-' . $width . 'x' . $height . '.jpg';
+        $mode = $contain ? 'contain-' : '';
+        $format = $contain ? 'png' : 'jpg';
+        $name = 'thumb-' . $mode . sha1($source_path) . '-' . $width . 'x' . $height . '.' . $format;
         $thumb_path = $this->thumbs_path . '/' . $name;
         $thumb_href = $this->thumbs_href . '/' . $name;
 
@@ -73,8 +77,12 @@ class Thumb {
                 $image->set_source($source_path);
             }
 
-            $image->thumb($width, $height);
-            $image->save_dest_jpeg($thumb_path, 80);
+            $image->thumb($width, $height, $contain);
+            if ($contain) {
+                $image->save_dest_png($thumb_path);
+            } else {
+                $image->save_dest_jpeg($thumb_path, 80);
+            }
         }
 
         return file_exists($thumb_path) ? $thumb_href : null;
@@ -155,6 +163,13 @@ class Image {
         }
     }
 
+    public function save_dest_png($filename) {
+        if (!is_null($this->dest)) {
+            @imagepng($this->dest, $filename, 6);
+            @chmod($filename, 0775);
+        }
+    }
+
     public function release_dest() {
         if (!is_null($this->dest)) {
             @imagedestroy($this->dest);
@@ -173,12 +188,42 @@ class Image {
         }
     }
 
-    public function thumb($width, $height) {
+    public function thumb($width, $height, $contain = false) {
         if (is_null($this->source)) {
             return;
         }
 
         $src_r = 1.0 * $this->width / $this->height;
+
+        if ($contain && $height != 0) {
+            $target_width = intval($width);
+            $target_height = intval($height);
+            $scale = min(1.0 * $target_width / $this->width, 1.0 * $target_height / $this->height);
+            $scaled_width = max(1, intval(round($this->width * $scale)));
+            $scaled_height = max(1, intval(round($this->height * $scale)));
+            $dest_x = intval(($target_width - $scaled_width) / 2);
+            $dest_y = intval(($target_height - $scaled_height) / 2);
+
+            $this->dest = imagecreatetruecolor($target_width, $target_height);
+            imagealphablending($this->dest, false);
+            imagesavealpha($this->dest, true);
+            $transparent = imagecolorallocatealpha($this->dest, 0, 0, 0, 127);
+            imagefill($this->dest, 0, 0, $transparent);
+            imagealphablending($this->dest, true);
+            imagecopyresampled(
+                $this->dest,
+                $this->source,
+                $dest_x,
+                $dest_y,
+                0,
+                0,
+                $scaled_width,
+                $scaled_height,
+                $this->width,
+                $this->height
+            );
+            return;
+        }
 
         if ($height == 0) {
             if ($src_r >= 1) {

@@ -15,6 +15,7 @@
     "img":              ["*.xpm"],
     "img-bmp":          ["*.bmp"],
     "img-gif":          ["*.gif"],
+    "img-heic":         ["*.heic", "*.heif"],
     "img-ico":          ["*.ico"],
     "img-jpg":          ["*.jpg", "*.jpeg"],
     "img-png":          ["*.png"],
