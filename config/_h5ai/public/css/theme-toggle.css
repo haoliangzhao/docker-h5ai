@@ -87,6 +87,23 @@ html.theme-transitions select {
     transition: color 240ms ease, background-color 240ms ease, border-color 240ms ease;
 }
 
+html.theme-transitions #pv-content-txt {
+    transition: color 240ms ease, background-color 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
+}
+
+#pv-overlay {
+    background: rgba(20, 20, 20, 0.42);
+    -webkit-backdrop-filter: blur(10px) saturate(0.85);
+    backdrop-filter: blur(10px) saturate(0.85);
+    transition: background-color 300ms ease, -webkit-backdrop-filter 300ms ease, backdrop-filter 300ms ease;
+}
+
+#pv-overlay.fullscreen {
+    background: #212121;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+}
+
 html[data-theme="dark"] #root {
     color: #e8e8e8;
     background: #181818;
@@ -204,6 +221,68 @@ html[data-theme="dark"] #view #view-hint {
     color: rgba(255, 255, 255, 0.08);
 }
 
+html[data-theme="dark"] #pv-content-txt {
+    color: #e8e8e8;
+    background: #202020;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow:
+        0 1px 10px rgba(0, 0, 0, 0.8),
+        0 0 0 1px rgba(0, 0, 0, 0.35),
+        0 8px 28px rgba(0, 0, 0, 0.45);
+}
+
+html[data-theme="dark"] #pv-overlay {
+    background: rgba(0, 0, 0, 0.52);
+}
+
+html[data-theme="dark"] #pv-overlay.fullscreen {
+    background: #151515;
+}
+
+html[data-theme="dark"] #pv-content-txt code,
+html[data-theme="dark"] pre#pv-content-txt code {
+    color: inherit;
+}
+
+html[data-theme="dark"] #pv-content-txt a,
+html[data-theme="dark"] #pv-content-txt a:active,
+html[data-theme="dark"] #pv-content-txt a:visited {
+    color: #64b5f6;
+}
+
+html[data-theme="dark"] #pv-content-txt a:hover {
+    color: #90caf9;
+}
+
+html[data-theme="dark"] div#pv-content-txt code,
+html[data-theme="dark"] #pv-content-txt .ll-str {
+    color: #81c784;
+}
+
+html[data-theme="dark"] #pv-content-txt .ll-nam {
+    color: #64b5f6;
+}
+
+html[data-theme="dark"] #pv-content-txt .ll-num {
+    color: #f48fb1;
+}
+
+html[data-theme="dark"] #pv-content-txt .ll-rex {
+    color: #ffb74d;
+}
+
+html[data-theme="dark"] #pv-content-txt .ll-pct {
+    color: #bdbdbd;
+}
+
+html[data-theme="dark"] #pv-content-txt .ll-key {
+    color: #eeeeee;
+}
+
+html[data-theme="dark"] #pv-content-txt .ll-com {
+    color: #9e9e9e;
+}
+
 html[data-theme="dark"] #fallback table {
     background: #181818;
 }
@@ -235,7 +314,12 @@ html[data-theme="dark"] #view.view-details .header .sort {
     html.theme-transitions #fallback table,
     html.theme-transitions #fallback-hints,
     html.theme-transitions input,
-    html.theme-transitions select {
+    html.theme-transitions select,
+    html.theme-transitions #pv-content-txt {
+        transition: none;
+    }
+
+    #pv-overlay {
         transition: none;
     }
 }
