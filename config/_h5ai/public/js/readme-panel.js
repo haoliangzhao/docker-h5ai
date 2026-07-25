@@ -14,9 +14,10 @@
 
     function readStoredState() {
         try {
-            return window.localStorage.getItem(storageKey) === "true";
+            var storedState = window.localStorage.getItem(storageKey);
+            return storedState === null ? true : storedState === "true";
         } catch (error) {
-            return false;
+            return true;
         }
     }
 
