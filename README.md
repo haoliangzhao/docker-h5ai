@@ -1,6 +1,6 @@
 # docker-h5ai Fork
 
-This fork was developed with the help of Codex. It is based on
+This fork was developed with the help of `Codex`. It is based on
 [awesometic/docker-h5ai](https://github.com/awesometic/docker-h5ai).
 
 ## Changes
@@ -50,11 +50,5 @@ Build and start the container:
 docker compose up -d --build
 ```
 
-Check the container:
-
-```bash
-docker compose ps
-docker compose logs --tail=100
-```
 
 The service is available to a reverse proxy at `http://127.0.0.1:8080`.
