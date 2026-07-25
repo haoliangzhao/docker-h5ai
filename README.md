@@ -24,11 +24,11 @@ services:
   h5ai:
     build:
       context: "https://github.com/haoliangzhao/docker-h5ai.git#master"
-    image: docker-h5ai:prod
-    container_name: docker-h5ai
+    image: docker-h5ai:latest
+    container_name: h5ai
     restart: unless-stopped
     ports:
-      - "127.0.0.1:8080:80"
+      - 8080:80
     environment:
       PUID: "1000"
       PGID: "1000"
@@ -51,4 +51,4 @@ docker compose up -d --build
 ```
 
 
-The service is available to a reverse proxy at `http://127.0.0.1:8080`.
+The service is available at `localhost:8080`.
