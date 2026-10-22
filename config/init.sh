@@ -19,7 +19,7 @@ if [ "$( grep -rni "$TZ" /etc/php82/conf.d/00_timezone.ini | wc -l )" -eq 0 ]; t
 fi
 
 msg "Make config directories..."
-mkdir -p /config/{nginx,h5ai}
+mkdir -p /config/{nginx,h5ai} /config/nginx/php-pages
 
 msg "Add dummy user for better handle permission..."
 useradd -u 911 -U -d /config -s /bin/false abc && usermod -G users abc
@@ -40,6 +40,8 @@ if [ ! -f "$conf_nginx" ]; then
     cp -arf $orig_nginx $conf_nginx
 else
     msg "User setup files found: $conf_nginx"
+    msg "Existing Nginx config is preserved; image security defaults are NOT automatically applied."
+    msg "Compare with /usr/share/h5ai-defaults/h5ai.conf; see docs/php-execution.md."
     msg "Remove image's default setup files and copy the previous version..."
 fi
 rm -f $orig_nginx
@@ -111,6 +113,9 @@ sed -i "s#group = nobody.*#group = abc#g" /etc/php82/php-fpm.d/www.conf
 
 msg "Set ownership to the configuration files..."
 chown -R abc:abc /config
+
+nginx -t || exit 1
+php-fpm82 -t || exit 1
 
 msg "Start supervisord..."
 supervisord -c /etc/supervisor/conf.d/supervisord.conf

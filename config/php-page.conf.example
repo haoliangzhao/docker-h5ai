@@ -1,0 +1,11 @@
+# Copy to /config/nginx/php-pages/status.conf ONLY if this page is trusted.
+# Exact URI and fixed filename: no directory-wide handler or PATH_INFO.
+# Never put an allowlist under /_h5ai/ (especially its writable caches).
+location = /tools/status.php {
+    root /h5ai;
+    try_files $uri =404;
+    include fastcgi_params;
+    fastcgi_param SCRIPT_FILENAME /h5ai/tools/status.php;
+    fastcgi_param HTTP_PROXY "";
+    fastcgi_pass 127.0.0.1:9000;
+}
