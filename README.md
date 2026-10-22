@@ -52,3 +52,9 @@ docker compose up -d --build
 
 
 The service is available at `localhost:8080`.
+
+## PHP execution policy
+
+The default executes only the h5ai index and HEIF preview endpoints. Shared PHP
+files return 404. Existing `/config/nginx/h5ai.conf` files are preserved on upgrade.
+See [migration and explicit PHP page compatibility](docs/php-execution.md).

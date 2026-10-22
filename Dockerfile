@@ -61,6 +61,12 @@ COPY config/php_set_jit.ini /etc/php82/conf.d/00_jit.ini
 COPY config/php_set_memory_limit.ini /etc/php82/conf.d/00_memlimit.ini
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
+# Defense in depth applies even when an older Nginx config is persisted.
+COPY config/php_security.ini /etc/php82/conf.d/99_security.ini
+COPY config/php-fpm-security.conf /etc/php82/php-fpm.d/zz-security.conf
+COPY config/php-page.conf.example /usr/share/h5ai-defaults/php-page.conf.example
+COPY config/h5ai.conf /usr/share/h5ai-defaults/h5ai.conf
+
 # Copy h5ai
 COPY config/_h5ai /usr/share/h5ai/_h5ai
 
